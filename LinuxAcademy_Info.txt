@@ -1,0 +1,10 @@
+Linux Academy Info
+
+Lab Server - 12/01/2016
+
+Hosts:
+jpwalker19601.mylabserver.com
+jpwalker19601b.mylabserver.com
+
+PUBLIC IP		PRIVATE IP
+54.214.206.75	172.31.30.195
