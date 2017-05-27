@@ -1,42 +1,39 @@
 #!/usr/bin/python
 
-#Author: Suraj Patil
-#Version: 1.0
-#Date: 25th March 2014
+# Author: James Walker
+# Version: 2.0
+# Date: May 27, 2007
 
-# Modified by James Walker
-# Version: 1.1
-# Date: 8 May 2017
-
-'''change filenames of all files in the given path to something you put there, You can name them in some order,
- like Photo001, Photo002 etc, of great help when you have a lot of files with contextual names'''
- 
-import os
-from distutils.dir_util import copy_tree
-import datetime
-import glob
-
-# Set the variables
-path = "/Users/jameswalker/Pictures/Misc/"
-new_file_name = datetime.date.today().strftime("%B_%d_%Y")
-file_extension = "jpeg"
-
-# Copy the files from iCloud to local drive
-fromDirectory = "/Users/jameswalker/iCloud/Archive"
-toDirectory = "/Users/jameswalker/Pictures/Misc"
-
-copy_tree(fromDirectory, toDirectory)
-
-# Fix the file extension
-file_extension = (str('.')+ file_extension)
-
-j=0
-os.chdir(path)
-for i in os.listdir(path):
-	os.rename(i,new_file_name+ str(j)+file_extension)
-	j+=1
+''' The rename_file.py scripts take the full path to the directory
+	where your files to be renamed live.
 	
-# Remove the files from the iCloud directory
-files = glob.glob('/Users/jameswalker/iCloud/Archive/*')
-for f in files:
-    os.remove(f)
+	The newstring variable or "new identifier" is a string to add 
+	onto the end of the file name when renaming it.
+	
+	For example if you have two files in /home/myhome/docs 
+	named one.txt and index.html, and you want to rename them so they 
+	become one-backup.txt and index-backup.html then you would run 
+	the script like this:
+	
+	./rename_files.py 
+	Enter the directory path where you need to rename
+	Example "/home/myid/temp". Make sure to include the qoutes!
+	: "/home/myhome/documents"
+	Enter the new identifier to add to the file name
+	Example  "-new",  "-1 ". Make sure to include the qoutes!
+	: "-backup"
+	
+'''
+
+import os
+
+path = input('Enter the directory path where you need to rename\nExample "/home/myid/temp". Make sure to include the qoutes!\n: ')
+newstring = input('Enter the new identifier to add to the file name\nExample  "-new",  "-1 ". Make sure to include the qoutes!\n: ' )
+
+for filename in os.listdir(path):
+    filename_without_ext = os.path.splitext(filename)[0]
+    extension = os.path.splitext(filename)[1]
+    new_file_name = filename_without_ext+newstring
+    new_file_name_with_ext = new_file_name+extension
+    print(new_file_name_with_ext)
+    os.rename(os.path.join(path,filename),os.path.join(path,new_file_name_with_ext))
