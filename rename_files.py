@@ -27,8 +27,8 @@
 
 import os
 
-path = input('Enter the directory path where you need to rename\nExample "/home/myid/temp". Make sure to include the qoutes!\n: ')
-newstring = input('Enter the new identifier to add to the file name\nExample  "-new",  "-1 ". Make sure to include the qoutes!\n: ' )
+path = raw_input('Enter the directory path where you need to rename\nExample "/home/myid/temp"\n: ')
+newstring = raw_input('Enter the new identifier to add to the file name\nExample  "-new",  "-1 "\n: ' )
 
 for filename in os.listdir(path):
     filename_without_ext = os.path.splitext(filename)[0]
