@@ -3,7 +3,7 @@
 import os
 import datetime
 
-path = "/home/f8tg2la/win/Pictures"
+path = "/Users/jameswalker/iCloud/Archive"
 newstring = datetime.date.today().strftime("%B_%d_%Y")
 
 for filename in os.listdir(path):
